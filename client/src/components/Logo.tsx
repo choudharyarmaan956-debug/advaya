@@ -61,20 +61,20 @@ export function Logo() {
           className="tracking-tight font-black"
           style={{
             fontSize: "36px",
-            color: "#EDB7C4",
+            color: "#8B1538",
             fontFamily: "'Helvetica Neue', Arial, sans-serif",
-            textShadow: "2px 2px 4px rgba(0,0,0,0.1), 1px 1px 2px rgba(237,183,196,0.3)"
+            textShadow: "2px 2px 4px rgba(0,0,0,0.1), 1px 1px 2px rgba(139,21,56,0.3)"
           }}
         >
           Advaya
         </h1>
         <div 
-          className="tracking-wider font-medium -mt-1"
+          className="tracking-wide font-bold -mt-1"
           style={{
-            fontSize: "12px",
+            fontSize: "16px",
             color: "#EDB7C4",
             fontFamily: "'Helvetica Neue', Arial, sans-serif",
-            opacity: 0.8
+            opacity: 0.9
           }}
         >
           carry your culture
