@@ -1,0 +1,164 @@
+Goal:
+Build a full-stack e-commerce website for Advaya, a brand selling tote bags with a desi aesthetic style. The site must support browsing products, viewing details, adding items to a cart, and checking out via WhatsApp Business API.
+
+🔹 Frontend Stack
+
+React (with Vite + TypeScript) → UI components.
+
+Tailwind CSS → Styling, responsive design, custom color tokens.
+
+Wouter → Client-side routing (/, /shop, /product/:id, /about, /cart).
+
+Radix UI + shadcn/ui → Modals, accordions, drawers.
+
+Lucide React + Font Awesome → Icons for UI + social media.
+
+Google Fonts: “Playfair Display” (headings) + “Inter” (body).
+
+Theme system: CSS variables for desi palette (beige, terracotta, maroon, sage, mustard).
+
+🔹 Backend Stack
+
+Express.js (with TypeScript) → REST API endpoints for products, cart, checkout.
+
+tsx → Run TypeScript files directly.
+
+Endpoints
+
+GET /api/products → Returns product list (from JSON for now).
+
+GET /api/product/:id → Returns product detail.
+
+POST /api/order → Initiates checkout (redirects to WhatsApp API link).
+
+🔹 Database & Data
+
+Use JSON files for now in /data/products.json.
+
+Structure:
+
+[
+  {
+    "id": 1,
+    "name": "Paisley Tote",
+    "price": 899,
+    "colors": ["beige", "maroon"],
+    "printStyle": "paisley",
+    "image": "/images/paisley-tote.jpg",
+    "description": "Handcrafted paisley tote with eco-friendly cotton",
+    "care": "Hand wash, do not bleach"
+  }
+]
+
+
+Drizzle ORM + PostgreSQL (Neon) → Prepared for production migration.
+
+Zod → Validate API responses + request bodies.
+
+🔹 State Management
+
+TanStack Query → Fetching + caching server data.
+
+React Hooks → Local component state.
+
+localStorage → Persist cart items across reloads.
+
+🔹 Core Features
+
+Home Page
+
+Hero with lifestyle tote image + tagline: “Carry Your Culture with Style”.
+
+Benefits section (eco-friendly, desi prints, COD).
+
+Instagram-style gallery.
+
+Shop Page
+
+Product grid (cards, hover effects).
+
+Filters → price, color, print style.
+
+Search bar.
+
+Product Page
+
+Large image with zoom-on-hover.
+
+Price, title, rating, add-to-cart button.
+
+Radix accordion → Fabric, Care, Shipping details.
+
+Cart Drawer
+
+Opens from right (Radix or shadcn drawer).
+
+Lists items, qty adjusters, subtotal.
+
+Persists via localStorage.
+
+Checkout button → opens WhatsApp with order summary text.
+
+Checkout (WhatsApp Integration)
+
+Pre-fill text:
+
+Hello Advaya, I’d like to order:
+- Paisley Tote x2
+- Block Print Tote x1
+Total: ₹xxxx
+
+
+Link: https://wa.me/<YOUR_NUMBER>?text=<ENCODED_MESSAGE>
+
+About Page
+
+Story section explaining Advaya’s heritage & eco-friendly approach.
+
+Design System Page (internal)
+
+Show colors, typography, components (button, card, accordion).
+
+🔹 Styling & Design
+
+Tailwind CSS + Plugins → Forms, typography, animations.
+
+CSS Variables (custom properties) for color themes.
+
+Desi background textures (SVG jaali, mandala, block-print) as subtle section dividers.
+
+🔹 External Services
+
+WhatsApp Business API → Checkout.
+
+Unsplash / Pixabay → Placeholder tote images.
+
+Replit → Hosting + deployment.
+
+🔹 Dev Tools
+
+npm → package manager.
+
+esbuild / Vite → bundler.
+
+PostCSS → Tailwind + CSS processing.
+
+🔹 Deliverables
+
+Full project folder structure:
+
+frontend/ (React + Vite + Tailwind)
+
+backend/ (Express + Drizzle + Zod)
+
+data/products.json
+
+public/images/ with sample assets
+
+README.md → setup + run instructions
+
+Cart & checkout fully working with WhatsApp.
+
+Product browsing + filtering functional.
+
+Ready for Neon/Postgres migration (but JSON used now).
