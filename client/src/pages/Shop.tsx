@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductModal } from "@/components/ProductModal";
+import { SkeletonCard } from "@/components/SkeletonCard";
 import { useProductFilters } from "@/hooks/useProductFilters";
 import type { Product } from "@shared/schema";
 
@@ -36,9 +37,33 @@ export default function Shop() {
     return (
       <div className="min-h-screen bg-card mandala-pattern">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-4 text-muted-foreground">Loading products...</p>
+          <div className="text-center mb-12">
+            <h1 className="font-serif text-3xl sm:text-4xl font-bold text-rose-800 mb-4 slide-up">Shop Our Collection</h1>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto fade-in">
+              Each tote tells a story of tradition, craftsmanship, and modern style. Find your perfect carry companion.
+            </p>
+          </div>
+          <div className="flex flex-col lg:flex-row gap-8">
+            <div className="lg:w-1/4">
+              <div className="bg-white rounded-xl p-6 shadow-md filter-slide-in">
+                <div className="h-6 bg-gray-200 rounded skeleton mb-4"></div>
+                <div className="space-y-4">
+                  <div className="h-10 bg-gray-200 rounded skeleton"></div>
+                  <div className="h-10 bg-gray-200 rounded skeleton"></div>
+                  <div className="space-y-2">
+                    <div className="h-4 bg-gray-200 rounded skeleton"></div>
+                    <div className="h-4 bg-gray-200 rounded skeleton"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="lg:w-3/4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[...Array(6)].map((_, i) => (
+                  <SkeletonCard key={i} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -70,29 +95,29 @@ export default function Shop() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters */}
           <div className="lg:w-1/4">
-            <div className="bg-background rounded-lg p-6 shadow-sm">
-              <h2 className="font-serif text-lg font-semibold mb-4">Filter Products</h2>
+            <div className="bg-white rounded-xl p-6 shadow-md filter-slide-in border border-gray-100">
+              <h2 className="font-serif text-xl font-semibold mb-6 text-gray-900">Filter Products</h2>
               
               {/* Search */}
               <div className="mb-6">
-                <label className="block text-sm font-medium mb-2">Search</label>
+                <label className="block text-sm font-medium mb-3 text-gray-700">Search</label>
                 <input 
                   type="text" 
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Search bags..." 
-                  className="w-full px-3 py-2 border border-border rounded-md bg-input focus:ring-2 focus:ring-ring focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300"
                   data-testid="input-search"
                 />
               </div>
 
               {/* Price Filter */}
               <div className="mb-6">
-                <label className="block text-sm font-medium mb-2">Price Range</label>
+                <label className="block text-sm font-medium mb-3 text-gray-700">Price Range</label>
                 <select 
                   value={priceFilter} 
                   onChange={(e) => setPriceFilter(e.target.value as any)}
-                  className="w-full px-3 py-2 border border-border rounded-md bg-input"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300"
                   data-testid="select-price-filter"
                 >
                   <option value="">All Prices</option>
@@ -104,7 +129,7 @@ export default function Shop() {
 
               {/* Print Style Filter */}
               <div className="mb-6">
-                <label className="block text-sm font-medium mb-2">Print Style</label>
+                <label className="block text-sm font-medium mb-3 text-gray-700">Print Style</label>
                 <div className="space-y-2">
                   {["heritage", "vintage"].map((style) => (
                     <label key={style} className="flex items-center">
@@ -112,10 +137,10 @@ export default function Shop() {
                         type="checkbox" 
                         checked={selectedPrintStyles.includes(style)}
                         onChange={() => togglePrintStyle(style)}
-                        className="rounded border-border text-primary focus:ring-ring"
+                        className="rounded border-gray-300 text-pink-600 focus:ring-pink-500 focus:ring-2 transition-all duration-300"
                         data-testid={`checkbox-print-${style}`}
                       />
-                      <span className="ml-2 text-sm capitalize">{style}</span>
+                      <span className="ml-3 text-sm capitalize text-gray-700">{style}</span>
                     </label>
                   ))}
                 </div>
@@ -126,12 +151,13 @@ export default function Shop() {
 
           {/* Product Grid */}
           <div className="lg:w-3/4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProducts.map((product, index) => (
                 <ProductCard
                   key={product.id}
                   product={product}
                   onViewDetails={() => setSelectedProduct(product)}
+                  index={index}
                 />
               ))}
             </div>
