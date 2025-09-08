@@ -16,24 +16,15 @@ export function Shop() {
     setPriceFilter,
     selectedPrintStyles,
     togglePrintStyle,
-    selectedColors,
-    toggleColor,
     filteredProducts
   } = useProductFilters(products);
 
-  const colorOptions = [
-    { name: "terracotta", color: "#C1623C" },
-    { name: "mustard", color: "#D6A419" },
-    { name: "maroon", color: "#6B1F2A" },
-    { name: "sage", color: "#7A8C6D" },
-    { name: "beige", color: "#F5EDE1" }
-  ];
 
   return (
     <section id="shop" className="py-16 bg-card mandala-pattern">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-secondary mb-4">Shop Our Collection</h2>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-rose-800 mb-4">Shop Our Collection</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Each tote tells a story of tradition, craftsmanship, and modern style. Find your perfect carry companion.
           </p>
@@ -68,9 +59,9 @@ export function Shop() {
                   data-testid="select-price-filter"
                 >
                   <option value="">All Prices</option>
-                  <option value="low">Under ₹2000</option>
-                  <option value="mid">₹2000 - ₹3000</option>
-                  <option value="high">Above ₹3000</option>
+                  <option value="low">Under ₹500</option>
+                  <option value="mid">₹500 - ₹1000</option>
+                  <option value="high">Above ₹1000</option>
                 </select>
               </div>
 
@@ -78,7 +69,7 @@ export function Shop() {
               <div className="mb-6">
                 <label className="block text-sm font-medium mb-2">Print Style</label>
                 <div className="space-y-2">
-                  {["blockprint", "paisley", "mandala"].map((style) => (
+                  {["heritage", "vintage"].map((style) => (
                     <label key={style} className="flex items-center">
                       <input 
                         type="checkbox" 
@@ -87,29 +78,12 @@ export function Shop() {
                         className="rounded border-border text-primary focus:ring-ring"
                         data-testid={`checkbox-print-${style}`}
                       />
-                      <span className="ml-2 text-sm capitalize">{style === 'blockprint' ? 'Block Print' : style}</span>
+                      <span className="ml-2 text-sm capitalize">{style}</span>
                     </label>
                   ))}
                 </div>
               </div>
 
-              {/* Color Filter */}
-              <div className="mb-6">
-                <label className="block text-sm font-medium mb-2">Colors</label>
-                <div className="flex flex-wrap gap-2">
-                  {colorOptions.map((color) => (
-                    <button
-                      key={color.name}
-                      onClick={() => toggleColor(color.name)}
-                      className={`w-8 h-8 rounded-full border-2 ${
-                        selectedColors.includes(color.name) ? 'border-primary ring-2 ring-primary' : 'border-border'
-                      }`}
-                      style={{ backgroundColor: color.color }}
-                      data-testid={`button-color-${color.name}`}
-                    />
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
 

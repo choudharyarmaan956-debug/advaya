@@ -5,7 +5,6 @@ export function useProductFilters(products: Product[]) {
   const [searchTerm, setSearchTerm] = useState("");
   const [priceFilter, setPriceFilter] = useState<ProductFilters['priceRange']>("");
   const [selectedPrintStyles, setSelectedPrintStyles] = useState<string[]>([]);
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
 
   const togglePrintStyle = (style: string) => {
     setSelectedPrintStyles(prev => 
@@ -15,13 +14,6 @@ export function useProductFilters(products: Product[]) {
     );
   };
 
-  const toggleColor = (color: string) => {
-    setSelectedColors(prev => 
-      prev.includes(color) 
-        ? prev.filter(c => c !== color)
-        : [...prev, color]
-    );
-  };
 
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
@@ -32,9 +24,9 @@ export function useProductFilters(products: Product[]) {
 
       // Price filter
       if (priceFilter) {
-        if (priceFilter === 'low' && product.price >= 2000) return false;
-        if (priceFilter === 'mid' && (product.price < 2000 || product.price > 3000)) return false;
-        if (priceFilter === 'high' && product.price <= 3000) return false;
+        if (priceFilter === 'low' && product.price >= 500) return false;
+        if (priceFilter === 'mid' && (product.price < 500 || product.price > 1000)) return false;
+        if (priceFilter === 'high' && product.price <= 1000) return false;
       }
 
       // Print style filter
@@ -42,14 +34,10 @@ export function useProductFilters(products: Product[]) {
         return false;
       }
 
-      // Color filter
-      if (selectedColors.length > 0 && !selectedColors.some(color => product.colors.includes(color))) {
-        return false;
-      }
 
       return true;
     });
-  }, [products, searchTerm, priceFilter, selectedPrintStyles, selectedColors]);
+  }, [products, searchTerm, priceFilter, selectedPrintStyles]);
 
   return {
     searchTerm,
@@ -58,8 +46,6 @@ export function useProductFilters(products: Product[]) {
     setPriceFilter,
     selectedPrintStyles,
     togglePrintStyle,
-    selectedColors,
-    toggleColor,
     filteredProducts
   };
 }
