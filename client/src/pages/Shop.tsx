@@ -75,7 +75,19 @@ export default function Shop() {
       <div className="min-h-screen bg-card mandala-pattern">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
-            <p className="text-destructive">Error loading products. Please try again.</p>
+            <div className="bg-white rounded-xl p-8 shadow-md max-w-md mx-auto">
+              <div className="text-red-500 text-4xl mb-4">
+                <i className="fas fa-exclamation-triangle"></i>
+              </div>
+              <h2 className="font-serif text-xl font-semibold text-gray-900 mb-2">Oops! Something went wrong</h2>
+              <p className="text-gray-600 mb-4">We couldn't load the products. Please check your connection and try again.</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+              >
+                Try Again
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -85,14 +97,14 @@ export default function Shop() {
   return (
     <div className="min-h-screen bg-card mandala-pattern">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-12">
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-rose-800 mb-4">Shop Our Collection</h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+        <div className="text-center mb-16">
+          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-rose-800 mb-6 slide-up">Shop Our Collection</h1>
+          <p className="text-gray-600 text-xl max-w-3xl mx-auto fade-in leading-relaxed">
             Each tote tells a story of tradition, craftsmanship, and modern style. Find your perfect carry companion.
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-12">
           {/* Sidebar Filters */}
           <div className="lg:w-1/4">
             <div className="bg-white rounded-xl p-6 shadow-md filter-slide-in border border-gray-100">
@@ -163,9 +175,25 @@ export default function Shop() {
             </div>
             
             {filteredProducts.length === 0 && (
-              <div className="text-center py-12" data-testid="text-no-products">
-                <i className="fas fa-search text-4xl text-muted mb-4"></i>
-                <p className="text-muted-foreground">No products found matching your filters.</p>
+              <div className="col-span-full">
+                <div className="text-center py-16" data-testid="text-no-products">
+                  <div className="bg-white rounded-xl p-8 shadow-md max-w-md mx-auto">
+                    <div className="text-gray-400 text-5xl mb-4">
+                      <i className="fas fa-search"></i>
+                    </div>
+                    <h3 className="font-serif text-xl font-semibold text-gray-900 mb-2">No products found</h3>
+                    <p className="text-gray-600 mb-4">Try adjusting your filters or search terms to find what you're looking for.</p>
+                    <button 
+                      onClick={() => {
+                        setSearchTerm('');
+                        setPriceFilter('');
+                      }}
+                      className="text-pink-600 hover:text-pink-700 font-semibold transition-colors duration-300"
+                    >
+                      Clear all filters
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>
