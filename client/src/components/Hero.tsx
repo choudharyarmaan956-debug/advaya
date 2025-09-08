@@ -39,7 +39,7 @@ export function Hero({ onShopClick, onStoryClick }: HeroProps) {
             </button>
             <button 
               onClick={onStoryClick}
-              className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground px-8 py-4 rounded-lg font-semibold transition-all"
+              className="border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-4 rounded-lg font-semibold transition-all"
               data-testid="button-our-story"
             >
               Our Story
