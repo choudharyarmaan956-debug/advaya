@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
 import { Logo } from "./Logo";
 import { CartDrawer } from "./CartDrawer";
 import { useCart } from "@/hooks/useCart";
@@ -27,12 +28,7 @@ export function Layout({ children }: LayoutProps) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const [, navigate] = useLocation();
 
   return (
     <div className="min-h-screen bg-background">
@@ -42,47 +38,49 @@ export function Layout({ children }: LayoutProps) {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Logo />
+              <Link href="/">
+                <Logo />
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <button 
-                  onClick={() => scrollToSection('home')} 
+                <Link 
+                  href="/"
                   className="text-foreground hover:text-primary transition-colors px-3 py-2 font-medium"
                   data-testid="nav-home"
                 >
                   Home
-                </button>
-                <button 
-                  onClick={() => scrollToSection('shop')} 
+                </Link>
+                <Link 
+                  href="/shop"
                   className="text-foreground hover:text-primary transition-colors px-3 py-2 font-medium"
                   data-testid="nav-shop"
                 >
                   Shop
-                </button>
-                <button 
-                  onClick={() => scrollToSection('about')} 
+                </Link>
+                <Link 
+                  href="/about"
                   className="text-foreground hover:text-primary transition-colors px-3 py-2 font-medium"
                   data-testid="nav-about"
                 >
                   Our Story
-                </button>
-                <button 
-                  onClick={() => scrollToSection('contact')} 
+                </Link>
+                <a 
+                  href="#contact"
                   className="text-foreground hover:text-primary transition-colors px-3 py-2 font-medium"
                   data-testid="nav-contact"
                 >
                   Contact
-                </button>
+                </a>
               </div>
             </div>
 
             {/* Cart and Mobile Menu */}
             <div className="flex items-center space-x-4">
-              <button 
-                onClick={() => setIsCartOpen(true)} 
+              <Link 
+                href="/cart"
                 className="relative p-2 text-foreground hover:text-primary transition-colors"
                 data-testid="button-cart"
               >
@@ -95,7 +93,7 @@ export function Layout({ children }: LayoutProps) {
                     {totalItems}
                   </span>
                 )}
-              </button>
+              </Link>
               <button className="md:hidden p-2 text-foreground hover:text-primary transition-colors">
                 <i className="fas fa-bars text-xl"></i>
               </button>

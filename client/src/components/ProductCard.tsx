@@ -1,9 +1,10 @@
+import { Link } from "wouter";
 import { useCart } from "@/hooks/useCart";
 import type { Product } from "@shared/schema";
 
 interface ProductCardProps {
   product: Product;
-  onViewDetails: () => void;
+  onViewDetails?: () => void;
 }
 
 export function ProductCard({ product, onViewDetails }: ProductCardProps) {
@@ -30,10 +31,9 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
     ));
   };
 
-  return (
+  const cardContent = (
     <div 
       className="bg-background rounded-lg shadow-sm overflow-hidden group cursor-pointer transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-      onClick={onViewDetails}
       data-testid={`card-product-${product.id}`}
     >
       <div className="aspect-square overflow-hidden">
@@ -62,5 +62,21 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
         </button>
       </div>
     </div>
+  );
+
+  // If onViewDetails is provided (legacy modal mode), use onClick
+  if (onViewDetails) {
+    return (
+      <div onClick={onViewDetails}>
+        {cardContent}
+      </div>
+    );
+  }
+
+  // Otherwise, use Link to navigate to product detail page
+  return (
+    <Link href={`/product/${product.id}`}>
+      {cardContent}
+    </Link>
   );
 }

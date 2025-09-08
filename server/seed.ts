@@ -37,7 +37,5 @@ async function seedDatabase() {
   }
 }
 
-// Run if this file is executed directly
-if (require.main === module) {
-  seedDatabase();
-}
+// Run the seeding function
+seedDatabase();
