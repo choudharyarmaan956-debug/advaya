@@ -30,6 +30,9 @@
   --maroon: hsl(345, 56%, 27%);
   --sage: hsl(82, 14%, 49%);
   --charcoal: hsl(0, 0%, 16%);
+  --pink-desi: hsl(332, 64%, 70%);
+  --rose-desi: hsl(342, 75%, 65%);
+  --blush-desi: hsl(350, 80%, 85%);
 
   --radius: 0.75rem;
   --font-sans: "Inter", sans-serif;
@@ -74,7 +77,11 @@
 
 @layer utilities {
   .pattern-overlay {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236B1F2A' fill-opacity='0.08'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23E879A7' fill-opacity='0.06'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .pink-paisley-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23F472B6' fill-opacity='0.08'%3E%3Cpath d='M40 40c-11 0-20-9-20-20s9-20 20-20c15 0 20 10 20 20 0 12-9 20-20 20zm-5-15c3 3 8 3 10 0 2-3 2-8 0-10-3-3-8-3-10 0-2 3-2 8 0 10z'/%3E%3C/g%3E%3C/svg%3E");
   }
 
   .mandala-pattern {
