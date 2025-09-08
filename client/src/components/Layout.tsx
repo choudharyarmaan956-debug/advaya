@@ -35,7 +35,7 @@ export function Layout({ children }: LayoutProps) {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-gradient-to-r from-[#F5EDE1]/95 via-background/95 to-[#F5EDE1]/95 backdrop-blur-md border-b border-[#7A8C6D]/20 shadow-sm">
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-24 py-4">
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/">
