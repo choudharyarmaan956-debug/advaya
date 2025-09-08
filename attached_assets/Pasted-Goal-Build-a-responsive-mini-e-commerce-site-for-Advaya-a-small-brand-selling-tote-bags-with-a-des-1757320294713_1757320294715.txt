@@ -1,0 +1,173 @@
+Goal: Build a responsive mini e-commerce site for Advaya, a small brand selling tote bags with a desi aesthetic. The site should feel modern, minimal, and cultural.
+
+Tech stack (pick one and implement):
+
+Option A (preferred): React + Vite + Tailwind CSS
+
+Option B: Plain HTML/CSS/JS (no build step)
+
+Include a README with run instructions for Replit.
+
+Pages/Sections:
+
+Home (Landing)
+
+Hero with lifestyle image, headline: “Advaya — Carry Your Culture”, CTA buttons: Shop Now and Our Story.
+
+Benefits row (Eco-friendly cotton, Handcrafted prints, COD/Easy returns).
+
+Instagram-style gallery strip (grid of 6 images with hover).
+
+Shop
+
+Product grid (cards 2–3 per row). Hover lift + shadow.
+
+Filters (Price: Low–High, Print: block-print/paisley/mandala, Color).
+
+Search box.
+
+Product Detail
+
+Large image with zoom on hover.
+
+Title, price, rating, short description.
+
+Collapsible sections: Fabric & Care, Size, Shipping/Returns.
+
+Add to Cart button.
+
+Cart Drawer
+
+Slides in from right. List items, qty +/- , subtotal, Checkout.
+
+Cart must persist in localStorage.
+
+Checkout button opens WhatsApp with pre-filled order text:
+https://wa.me/<YOUR_NUMBER>?text=I%20want%20to%20order%20{{items}}%20from%20Advaya
+
+About / Story
+
+Short brand story: sustainable materials, desi craft inspiration.
+
+Footer
+
+Links, email, Instagram handle, copyright.
+
+Design Direction (Desi aesthetic):
+
+Colors:
+
+Beige: #F5EDE1
+
+Terracotta: #C1623C
+
+Mustard: #D6A419
+
+Deep Maroon: #6B1F2A
+
+Sage: #7A8C6D
+
+Charcoal: #2A2A2A
+
+Type:
+
+Headings: a modern serif (e.g., “Playfair Display” or “Cormorant”).
+
+Body: clean sans (e.g., “Inter”).
+
+Patterns & Motifs:
+
+Add a subtle jaali/mandala SVG background for hero or section dividers.
+
+Provide 2 SVGs (tiny size) and a CSS utility class to apply them as repeating patterns at 8–12% opacity.
+
+UI: Rounded corners (lg/2xl), soft shadows, smooth transitions (200–300ms), generous whitespace.
+
+Data & Assets:
+
+Create data/products.json with 8 sample totes:
+
+fields: id, name, price, colors (array), printStyle (blockprint/paisley/mandala), image, description, care
+
+Use royalty-free placeholder image URLs or local /public/images/* placeholders.
+
+Include a favicon and a simple logo wordmark “Advaya” (SVG) using the heading font.
+
+Functionality:
+
+Cart logic: add/remove, quantity, subtotal, localStorage sync.
+
+Filter/search: client-side filter by printStyle, color, and price.
+
+Image zoom: CSS/JS or a small React component.
+
+Accordions: simple accessible component (no heavy deps).
+
+Responsive: Looks great on mobile first, tablet, desktop.
+
+Accessibility: Semantic HTML, aria labels for cart drawer & accordions.
+
+SEO: Title/description meta, OpenGraph tags, schema.org/Product JSON-LD on product detail.
+
+Performance: Lazy-load product images.
+
+Code Quality:
+
+Organize as:
+src/components/*, src/pages/* (or sections), src/hooks/*, data/products.json, public/images/*.
+
+Provide constants/theme.ts (or .js) exporting color tokens.
+
+Tailwind config with fonts and color tokens.
+
+Nice-to-Have (if time):
+
+Minimal Framer Motion fade/slide for hero text & cart drawer.
+
+“Back to top” button.
+
+Toast on add-to-cart.
+
+Deliverables:
+
+Complete working app.
+
+README.md with:
+
+Project description
+
+How to run in Replit
+
+How to change WhatsApp number, colors, and products
+
+Where to replace images
+
+Add a few Instagram post templates as exportable images (simple 1080×1080 hero + quote card in /public/social/).
+
+Run Commands (if using Vite):
+
+Install: npm i
+
+Dev: npm run dev
+
+Build: npm run build
+
+Preview: npm run preview
+
+Brand Copy Samples (use in placeholders):
+
+Tagline: “Carry Your Culture.”
+
+Sub-tag: “Handcrafted tote bags inspired by Indian prints.”
+
+About blurb: “Advaya blends modern minimalism with the soul of Indian craft—block prints, paisley, and mandala motifs—on eco-friendly cotton totes.”
+
+Quick follow-ups you can paste into Replit AI
+
+“Replace WhatsApp number with +91XXXXXXXXXX and show a test order string.”
+
+“Add a ‘Gift Note’ text box in cart and include it in the WhatsApp message.”
+
+“Generate 8 product images using solid backgrounds with subtle pattern overlays and save to /public/images.”
+
+“Create a themes.md file showing light/dark variants using the same palette.”
