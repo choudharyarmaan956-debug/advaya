@@ -91,6 +91,15 @@ export function Layout({ children }: LayoutProps) {
                   <div className="absolute inset-0 bg-gradient-to-r from-[hsl(332,64%,70%)]/0 to-[hsl(332,64%,70%)]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-[hsl(16,57%,51%)] to-[hsl(332,64%,70%)] group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
                 </Link>
+                <Link 
+                  href="/care-instructions"
+                  className="relative group px-4 py-2.5 font-medium text-[hsl(0,0%,16%)] hover:text-[hsl(16,57%,51%)] transition-all duration-300 rounded-xl font-serif text-lg tracking-wide"
+                  data-testid="nav-care-instructions"
+                >
+                  <span className="relative z-10">Care Instructions</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[hsl(332,64%,70%)]/0 to-[hsl(332,64%,70%)]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-[hsl(16,57%,51%)] to-[hsl(332,64%,70%)] group-hover:w-full group-hover:left-0 transition-all duration-300"></div>
+                </Link>
                 <a 
                   href="#contact"
                   className="relative group px-4 py-2.5 font-medium text-[hsl(0,0%,16%)] hover:text-[hsl(16,57%,51%)] transition-all duration-300 rounded-xl font-serif text-lg tracking-wide"
@@ -173,6 +182,14 @@ export function Layout({ children }: LayoutProps) {
                   data-testid="mobile-nav-size-guide"
                 >
                   Size Guide
+                </Link>
+                <Link 
+                  href="/care-instructions"
+                  onClick={closeMobileMenu}
+                  className="block py-3 px-4 text-[hsl(0,0%,16%)] hover:text-[hsl(16,57%,51%)] font-serif text-xl tracking-wide rounded-xl hover:bg-gradient-to-r hover:from-[hsl(332,64%,70%)]/10 hover:to-[hsl(16,57%,51%)]/10 transition-all duration-300"
+                  data-testid="mobile-nav-care-instructions"
+                >
+                  Care Instructions
                 </Link>
                 <a 
                   href="#contact"

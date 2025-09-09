@@ -10,6 +10,7 @@ import ProductDetail from "@/pages/ProductDetail";
 import About from "@/pages/About";
 import Cart from "@/pages/Cart";
 import { SizeGuide } from "@/pages/SizeGuide";
+import { CareInstructions } from "@/pages/CareInstructions";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
         <Route path="/product/:id" component={ProductDetail} />
         <Route path="/about" component={About} />
         <Route path="/size-guide" component={SizeGuide} />
+        <Route path="/care-instructions" component={CareInstructions} />
         <Route path="/cart" component={Cart} />
         <Route component={NotFound} />
       </Switch>
