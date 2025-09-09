@@ -10,6 +10,7 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const { cart } = useCart();
 
@@ -26,6 +27,14 @@ export function Layout({ children }: LayoutProps) {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   const [, navigate] = useLocation();
@@ -104,14 +113,62 @@ export function Layout({ children }: LayoutProps) {
                   </span>
                 )}
               </Link>
-              <button className="md:hidden p-3 text-[hsl(0,0%,16%)] hover:text-[hsl(16,57%,51%)] transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-[hsl(332,64%,70%)]/5 hover:to-[hsl(16,57%,51%)]/5 transform hover:scale-105">
+              <button 
+                onClick={toggleMobileMenu}
+                className="md:hidden p-3 text-[hsl(0,0%,16%)] hover:text-[hsl(16,57%,51%)] transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-[hsl(332,64%,70%)]/5 hover:to-[hsl(16,57%,51%)]/5 transform hover:scale-105"
+                data-testid="button-mobile-menu"
+              >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
                 </svg>
               </button>
             </div>
           </div>
         </nav>
+
+        {/* Mobile Menu */}
+        <div className={`md:hidden fixed inset-x-0 top-20 z-40 transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+        }`}>
+          <div className="bg-gradient-to-b from-white/98 to-[hsl(32,38%,94%)]/98 backdrop-blur-xl border-b border-[hsl(16,57%,51%)]/20 shadow-xl">
+            <div className="container mx-auto px-6 py-6">
+              <div className="flex flex-col space-y-4">
+                <Link 
+                  href="/"
+                  onClick={closeMobileMenu}
+                  className="block py-3 px-4 text-[hsl(0,0%,16%)] hover:text-[hsl(16,57%,51%)] font-serif text-xl tracking-wide rounded-xl hover:bg-gradient-to-r hover:from-[hsl(332,64%,70%)]/10 hover:to-[hsl(16,57%,51%)]/10 transition-all duration-300"
+                  data-testid="mobile-nav-home"
+                >
+                  Home
+                </Link>
+                <Link 
+                  href="/shop"
+                  onClick={closeMobileMenu}
+                  className="block py-3 px-4 text-[hsl(0,0%,16%)] hover:text-[hsl(16,57%,51%)] font-serif text-xl tracking-wide rounded-xl hover:bg-gradient-to-r hover:from-[hsl(332,64%,70%)]/10 hover:to-[hsl(16,57%,51%)]/10 transition-all duration-300"
+                  data-testid="mobile-nav-shop"
+                >
+                  Shop
+                </Link>
+                <Link 
+                  href="/about"
+                  onClick={closeMobileMenu}
+                  className="block py-3 px-4 text-[hsl(0,0%,16%)] hover:text-[hsl(16,57%,51%)] font-serif text-xl tracking-wide rounded-xl hover:bg-gradient-to-r hover:from-[hsl(332,64%,70%)]/10 hover:to-[hsl(16,57%,51%)]/10 transition-all duration-300"
+                  data-testid="mobile-nav-about"
+                >
+                  Our Story
+                </Link>
+                <a 
+                  href="#contact"
+                  onClick={closeMobileMenu}
+                  className="block py-3 px-4 text-[hsl(0,0%,16%)] hover:text-[hsl(16,57%,51%)] font-serif text-xl tracking-wide rounded-xl hover:bg-gradient-to-r hover:from-[hsl(332,64%,70%)]/10 hover:to-[hsl(16,57%,51%)]/10 transition-all duration-300"
+                  data-testid="mobile-nav-contact"
+                >
+                  Contact
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
 
       {/* Main Content */}
