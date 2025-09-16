@@ -1,14 +1,27 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { ProductCard } from "./ProductCard";
 import { ProductModal } from "./ProductModal";
+import { SkeletonCard } from "./SkeletonCard";
 import { useProductFilters } from "@/hooks/useProductFilters";
-import productsData from "@/data/products.json";
 import type { Product } from "@shared/schema";
 
-const products = productsData as Product[];
+async function fetchProducts(): Promise<Product[]> {
+  const response = await fetch('/api/products');
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
+  }
+  return response.json();
+}
 
 export function Shop() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  
+  const { data: products = [], isLoading, error } = useQuery({
+    queryKey: ['/api/products'],
+    queryFn: fetchProducts
+  });
+
   const {
     searchTerm,
     setSearchTerm,
@@ -19,6 +32,50 @@ export function Shop() {
     filteredProducts
   } = useProductFilters(products);
 
+  if (isLoading) {
+    return (
+      <section id="shop" className="py-16 bg-card mandala-pattern">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-rose-800 mb-4">Shop Our Collection</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Loading our beautiful collection...
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="shop" className="py-16 bg-card mandala-pattern">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="bg-white rounded-xl p-8 shadow-md max-w-md mx-auto">
+              <div className="text-red-500 text-4xl mb-4">
+                <i className="fas fa-exclamation-triangle"></i>
+              </div>
+              <h2 className="font-serif text-xl font-semibold text-gray-900 mb-2">Oops! Something went wrong</h2>
+              <p className="text-gray-600 mb-4">We couldn't load the products. Please check your connection and try again.</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+                data-testid="button-try-again"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="shop" className="py-16 bg-card mandala-pattern">
