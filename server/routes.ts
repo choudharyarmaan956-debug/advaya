@@ -47,7 +47,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Generate WhatsApp message
       let message = "Hello Advaya, I'd like to order:\n\n";
       
-      orderData.items.forEach((item: CartItem) => {
+      (orderData.items as CartItem[]).forEach((item: CartItem) => {
         message += `• ${item.name} (${item.color}) x${item.quantity} - ₹${item.price.toLocaleString()}\n`;
       });
 
